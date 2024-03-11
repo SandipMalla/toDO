@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+{% block title %}
+Home Page
+{% endblock title %}
+{% block body %}
+<div class="container">
+    <h1>To Do Tasks</h1>
+    <h3>Total Tasks: {{total}}</h3>
+    <h3>Completed Tasks: {{Completed}}</h3>
+    <h3>Incompleted Tasks: {{Incompleted}}</h3>
+<table class="table">
+    <thead>
+      <tr>
+        <th scope="col">S.N</th>
+        <th scope="col">Name</th>
+        <th scope="col">Description</th>
+        <th scope="col">Status</th>
+        <th scope="col">Action</th>
+        <th scope="col">Delete</th>
+        <th scope="col">Edit</th>
+      </tr>
+    </thead>
+    <tbody>
+        {% for task in tasks %}
+        <tr>
+        <th scope="row">{{forloop.counter}}</th>
+        <td>{{task.name}}</td>
+        <td>{{task.description}}</td>
+        <td>
+            {% if task.status %}
+            <span class="text-success">Done</span>
+            {% else %}
+            <span class="text-danger">Pending</span>
+
+            {% endif %}
+            </td>
+            <td>
+            <a href="/task/{{task.id}}/mark" class="btn btn-primary">Change</a>
+          </td>
+          <td>
+            <a href="/task/{{task.id}}/delete" class="btn btn-danger">Delete</a>
+          </td>
+        
+          <td>
+            <a href="/task/{{task.id}}/edit" class="btn btn-primary">Edit</a>
+          </td>
+      </tr>
+    </tbody>
+    {% endfor %}
+  </table>
+</div>
+
+
+{% endblock body %}
