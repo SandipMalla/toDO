@@ -6,3 +6,6 @@ class Task(models.Model):
     description = models.TextField(null=True,blank=True)
     status = models.BooleanField(default=False)
     
+    def  __str__(self):
+        return self.name
+    
